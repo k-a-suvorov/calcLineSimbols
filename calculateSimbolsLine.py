@@ -1,58 +1,21 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'uicalcsimbols.ui'
-#
-# Created by: PyQt5 UI code generator 5.13.2
-#
-# WARNING! All changes made in this file will be lost!
-
-
+import sys
+from uiface import *
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-class Ui_MainWindow(object):
-	def setupUi(self, MainWindow):
-		MainWindow.setObjectName("MainWindow")
-		MainWindow.resize(485, 280)
-		self.centralwidget = QtWidgets.QWidget(MainWindow)
-		self.centralwidget.setObjectName("centralwidget")
-		self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-		self.pushButton.setGeometry(QtCore.QRect(20, 170, 251, 41))
-		self.pushButton.setObjectName("pushButton")
-		self.label = QtWidgets.QLabel(self.centralwidget)
-		self.label.setGeometry(QtCore.QRect(316, 180, 131, 21))
-		self.label.setObjectName("label")
-		self.lineEdit = QtWidgets.QLineEdit(self.centralwidget)
-		self.lineEdit.setGeometry(QtCore.QRect(20, 69, 391, 61))
-		self.lineEdit.setObjectName("lineEdit")
-		MainWindow.setCentralWidget(self.centralwidget)
-		self.menubar = QtWidgets.QMenuBar(MainWindow)
-		self.menubar.setGeometry(QtCore.QRect(0, 0, 485, 21))
-		self.menubar.setObjectName("menubar")
-		MainWindow.setMenuBar(self.menubar)
-		self.statusbar = QtWidgets.QStatusBar(MainWindow)
-		self.statusbar.setObjectName("statusbar")
-		MainWindow.setStatusBar(self.statusbar)
+class MyWin(QtWidgets.QMainWindow):
+    def __init__(self, parent=None):
+        QtWidgets.QWidget.__init__(self, parent)
+        self.ui = Ui_MainWindow()
+        self.ui.setupUi(self)
+        self.setWindowTitle('My Title')
 
-		self.retranslateUi(MainWindow)
-		QtCore.QMetaObject.connectSlotsByName(MainWindow)
-		self.pushButton.clicked.connect(self.count)
+        self.ui.pushButton.clicked.connect(self.countSimbol)
 
-	def retranslateUi(self, MainWindow):
-		_translate = QtCore.QCoreApplication.translate
-		MainWindow.setWindowTitle(_translate("MainWindow", "Подсчет символов в строке"))
-		self.pushButton.setText(_translate("MainWindow", "Длинна вашего текста"))
-		self.label.setText(_translate("MainWindow", "TextLabel"))
-		
-		
-	def count(self):
-		self.label.setText("Длина Вашего текста %d" % len(self.lineEdit.text()))
-	
-
+    def countSimbol(self):
+        self.ui.label.setText("Длина Вашего текста %d" % len(self.ui.lineEdit.text()))   
+                
 if __name__ == "__main__":
-	import sys
-	app = QtWidgets.QApplication(sys.argv)
-	MainWindow = QtWidgets.QMainWindow()
-	ui = Ui_MainWindow()
-	ui.setupUi(MainWindow)
-	MainWindow.show()
-	sys.exit(app.exec_())
+    app = QtWidgets.QApplication(sys.argv)
+    myapp = MyWin()
+    myapp.show()
+    sys.exit(app.exec_())
